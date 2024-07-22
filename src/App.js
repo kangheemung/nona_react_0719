@@ -7,6 +7,7 @@ function App() {
   const [computerSelect, setComputerSelect] = useState(null);
   const [counter, setCounter] = useState(0);
   const [counter2, setCounter2] = useState(0);
+  const [result,setResult] = useState("")
 
   const increase = () => {
     setCounter(counter + 1);
@@ -45,9 +46,18 @@ const play = (userChoice) => {
   setUserSelect(choice[userChoice]);
   let computerChoice = randomChoice();
   setComputerSelect(computerChoice);
+  setResult(judgement(choice[userChoice],computerChoice));
+  let result = judgement(choice[userChoice], computerChoice);
+  if (result === "win") {
+    setResult("YOU WIN!");
+  } else if (result === "lose") {
+    setResult("YOU LOSE!");
+  } else {
+    setResult("It's a Tie!");
+  }
 };
 
-//랜덤한 숫자 
+//랜덤한 숫자
 const randomChoice = () => {
   let itemArray=Object.keys(choice);//객체에ㅔ 키값만 뽑아서 배열로 만들어 준다.
   console.log(choice)
@@ -56,8 +66,44 @@ const randomChoice = () => {
   let final= itemArray[randomItem]
   console.log("final", final);
   // 실제로 선택된 아이템 반환
-  return choice[ final]; // 랜덤으로 선정하도록 수정 필요
+  return choice[final]; // 랜덤으로 선정하도록 수정 필요
 }
+
+const judgement=(user,computer)=>{
+  //user===computer tie
+  //user===rock, computer=="scissors" user win
+  //user===rock, computer=="paper" user lose
+  //user===scissors, computer paper user win
+  //user===scissors computer rock, computer rock user lose
+  //user===papper computer rock user win
+  //user papper computer scissors user lose
+
+ // console.log("user",user,"computer",computer);
+  if (user.name ===computer.name){
+  return "tie"
+  }
+  else if (user.name==="Rock")return computer.name=="Scissors"? "win":"lose"
+  else if(user.name==="Scissors")return computer.name=="Paper"?"win":"lose"
+  else if(user.name==="Paper")return computer.name=="Rock"?"win":"lose"
+  //  if(computer=="Scissors"){
+  //  return "win"
+ // }else{
+  //  return "lose"
+ // }
+ //}
+//};
+
+
+  }
+ // if (user==="scissors",computer==="paper"){
+ //   console.log(lose)
+  //}
+  //else if (user==="rock",computer==="scissors"){
+  //  console.log(lose)
+  //}
+  //else if (user==="paper",computer==="scissors"){
+  //  console.log(lose)
+  //}
 
 return (
   <>
@@ -65,8 +111,8 @@ return (
         <div>state: {counter2}</div>
         <button onClick={increase}>클릭!</button>
         <div className='main'>
-          <Box title="YOU" item={userSelect} num={1} />
-          <Box title="computer" item={computerSelect} num={2} />
+          <Box title="YOU" item={userSelect} num={1} result={result}/>
+          <Box title="computer" item={computerSelect} num={2} result={result}/>
         </div>
         <div className="main">
           <button onClick={() => play("scissors")}>가위</button>
