@@ -1,6 +1,23 @@
 import React, { useState } from "react";
 import './App.css';
 import Box from "./component/Box";
+//사진 아이템 객체 만들기
+
+const choice = {
+  rock: {
+    name:"Rock",
+    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAxL1231cJvvm3a7E3HN8Mmyej3YoreJbcMg&s"
+  },
+  scissors:{
+    name:"Scissors",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFgjYmdf7JL7QqunSEhwetzzgXOxGJr9nx6w&s"
+  },
+  paper:{
+    name:"Paper",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPmvDzIfJNpT_YiYFCS6dLNNZEeoohW_qlyw&s"
+  }
+}
+
 
 function App() {
   const [userSelect, setUserSelect] = useState(null);
@@ -24,22 +41,6 @@ function App() {
 //let counter=0을 거치면서 counter 값은 다시 0으로 초기화된다.
 //state 값은 업데이트된 state가  되면서 다시 render
 
-//사진 아이템 객체 만들기
-
-const choice = {
-  rock: {
-    name:"Rock",
-    img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAxL1231cJvvm3a7E3HN8Mmyej3YoreJbcMg&s"
-  },
-  scissors:{
-    name:"Scissors",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFgjYmdf7JL7QqunSEhwetzzgXOxGJr9nx6w&s"
-  },
-  paper:{
-    name:"paper",
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPmvDzIfJNpT_YiYFCS6dLNNZEeoohW_qlyw&s"
-  }
-}
 
 
 const play = (userChoice) => {
@@ -47,20 +48,12 @@ const play = (userChoice) => {
   let computerChoice = randomChoice();
   setComputerSelect(computerChoice);
   setResult(judgement(choice[userChoice],computerChoice));
-  let result = judgement(choice[userChoice], computerChoice);
-  if (result === "win") {
-    setResult("YOU WIN!");
-  } else if (result === "lose") {
-    setResult("YOU LOSE!");
-  } else {
-    setResult("It's a Tie!");
-  }
 };
 
 //랜덤한 숫자
 const randomChoice = () => {
   let itemArray=Object.keys(choice);//객체에ㅔ 키값만 뽑아서 배열로 만들어 준다.
-  console.log(choice)
+  console.log("item array", itemArray);
   // 랜덤한 아이템 선택 로직 구현
   let randomItem = Math.floor(Math.random() * itemArray.length);
   let final= itemArray[randomItem]
@@ -79,12 +72,15 @@ const judgement=(user,computer)=>{
   //user papper computer scissors user lose
 
  // console.log("user",user,"computer",computer);
-  if (user.name ===computer.name){
-  return "tie"
-  }
-  else if (user.name==="Rock")return computer.name=="Scissors"? "win":"lose"
-  else if(user.name==="Scissors")return computer.name=="Paper"?"win":"lose"
-  else if(user.name==="Paper")return computer.name=="Rock"?"win":"lose"
+ if (user.name == computer.name) {
+      return "tie";
+    } else if (user.name == "Rock")
+      return computer.name == "Scissors" ? "win" : "lose";
+    else if (user.name == "Scissors")
+      return computer.name == "Paper" ? "win" : "lose";
+    else if (user.name == "Paper")
+      return computer.name == "Rock" ? "win" : "lose";
+    };
   //  if(computer=="Scissors"){
   //  return "win"
  // }else{
@@ -92,9 +88,6 @@ const judgement=(user,computer)=>{
  // }
  //}
 //};
-
-
-  }
  // if (user==="scissors",computer==="paper"){
  //   console.log(lose)
   //}
@@ -107,12 +100,10 @@ const judgement=(user,computer)=>{
 
 return (
   <>
-      <div >
-        <div>state: {counter2}</div>
-        <button onClick={increase}>클릭!</button>
+      <div>
         <div className='main'>
-          <Box title="YOU" item={userSelect} num={1} result={result}/>
-          <Box title="computer" item={computerSelect} num={2} result={result}/>
+        <Box title="You" item={userSelect} result={result} />
+        <Box title="Computer" item={computerSelect} result={result} />
         </div>
         <div className="main">
           <button onClick={() => play("scissors")}>가위</button>
@@ -121,7 +112,7 @@ return (
         </div>
       </div>
   </>
-);
+  );
 }
 
 export default App;
