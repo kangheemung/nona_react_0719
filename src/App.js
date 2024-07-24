@@ -106,10 +106,17 @@ return (
         <Box title="Computer" item={computerSelect} result={result} />
         </div>
         <div className="main">
-          <button onClick={() => play("scissors")}>가위</button>
-          <button onClick={() => play("rock")}>바위</button>
-          <button onClick={() => play("paper")}>보</button>
+          <button onClick={() => play("scissors")} class="hands_button">
+            <img class="hands_scissors"src="scissors.png" alt="Scissors icon" title="가위 바위 보 아이콘 제작자: Cap Cool - Flaticon" />
+          </button>
+          <button onClick={() => play("rock")} class="hands_button">
+            <img class="hands" src="rock.png" alt="Rock icon" title="주먹 아이콘 제작자: Freepik - Flaticon" />
+          </button>
+          <button onClick={() => play("paper")} class="hands_button">
+            <img  class="hands"src="paper.png" alt="Paper icon" title="가위 바위 보 아이콘 제작자: iconading - Flaticon" />
+          </button>
         </div>
+
       </div>
   </>
   );
