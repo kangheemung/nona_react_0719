@@ -101,6 +101,8 @@ const judgement=(user,computer)=>{
 return (
   <>
       <div>
+      <div class="stars"> </div>
+
         <div className='main'>
         <Box title="You" item={userSelect} result={result} />
         <Box title="Computer" item={computerSelect} result={result} />
@@ -116,7 +118,7 @@ return (
             <img  class="hands"src="paper.png" alt="Paper icon" title="가위 바위 보 아이콘 제작자: iconading - Flaticon" />
           </button>
         </div>
-
+     
       </div>
   </>
   );

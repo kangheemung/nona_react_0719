@@ -1,8 +1,37 @@
 body {
   text-align: center;
-  height: 100lvh;
-  background-color: black;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: relative; /* Add this line for positioning pseudo-elements */
 }
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: -50vh;
+  left: -50vw;
+  width: 200vw;
+  height: 200vh;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAOCAYAAADwikbvAAAAKElEQVQYlWNgYGBgYLhRh5sDAMGEvo2H7BfxfsyBvBXc+MjhGAcRoPQKBCzL9CiqwgAAAABJRU5ErkJggg=='); /* Base64 encoded image of a star or sparkle */
+  animation: twinkling 10s infinite linear;
+  z-index: -1; /* Send pseudo-element behind other content */
+}
+
+@keyframes twinkling {
+  0%, 90% {
+    opacity: 0;
+  }
+  5%, 95% {
+    opacity: 1;
+  }
+}
+
+
+
+
 
 .App-logo {
   height: 40vmin;
