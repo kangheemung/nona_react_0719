@@ -22,14 +22,10 @@ const choice = {
 function App() {
   const [userSelect, setUserSelect] = useState(null);
   const [computerSelect, setComputerSelect] = useState(null);
-  const [counter, setCounter] = useState(0);
-  const [counter2, setCounter2] = useState(0);
+
   const [result,setResult] = useState("")
 
-  const increase = () => {
-    setCounter(counter + 1);
-    setCounter2(counter2 + 1);
-  };
+
 
 //유조거 버튼을 클릭한다/
 //2.counter+1에서 1이됨
