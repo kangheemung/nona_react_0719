@@ -62,7 +62,7 @@ const randomChoice = () => {
   return choice[final]; // 랜덤으로 선정하도록 수정 필요
 }
 
-const judgement=(user,computer)=>{
+
   //user===computer tie
   //user===rock, computer=="scissors" user win
   //user===rock, computer=="paper" user lose
@@ -72,15 +72,17 @@ const judgement=(user,computer)=>{
   //user papper computer scissors user lose
 
  // console.log("user",user,"computer",computer);
- if (user.name == computer.name) {
-      return "tie";
-    } else if (user.name == "Rock")
-      return computer.name == "Scissors" ? "win" : "lose";
-    else if (user.name == "Scissors")
-      return computer.name == "Paper" ? "win" : "lose";
-    else if (user.name == "Paper")
-      return computer.name == "Rock" ? "win" : "lose";
-    };
+ const judgement = (user, computer) => {
+  if (user.name === computer.name) {
+    return "tie";
+  } else if (user.name === "Rock") {
+    return computer.name === "Scissors" ? "win" : "lose";
+  } else if (user.name === "Scissors") {
+    return computer.name === "Paper" ? "win" : "lose";
+  } else if (user.name === "Paper") {
+    return computer.name === "Rock" ? "win" : "lose";
+  }
+};
   //  if(computer=="Scissors"){
   //  return "win"
  // }else{
@@ -98,29 +100,27 @@ const judgement=(user,computer)=>{
   //  console.log(lose)
   //}
 
-return (
-  <>
+  return (
+    <>
       <div>
-      <div class="stars"> </div>
-
+        <div class="stars"></div>
         <div className='main'>
-        <Box title="You" item={userSelect} result={result} />
-        <Box title="Computer" item={computerSelect} result={result} />
+          <Box title="You" item={userSelect} result={result} />
+          <Box title="Computer" item={computerSelect} result={result} />
         </div>
         <div className="main">
           <button onClick={() => play("scissors")} class="hands_button">
-            <img class="hands_scissors"src="scissors.png" alt="Scissors icon" title="가위 바위 보 아이콘 제작자: Cap Cool - Flaticon" />
+            <img class="hands_scissors" src="scissors.png" alt="Scissors icon" title="가위 바위 보 아이콘 제작자: Cap Cool - Flaticon" />
           </button>
           <button onClick={() => play("rock")} class="hands_button">
             <img class="hands" src="rock.png" alt="Rock icon" title="주먹 아이콘 제작자: Freepik - Flaticon" />
           </button>
           <button onClick={() => play("paper")} class="hands_button">
-            <img  class="hands"src="paper.png" alt="Paper icon" title="가위 바위 보 아이콘 제작자: iconading - Flaticon" />
+            <img class="hands" src="paper.png" alt="Paper icon" title="가위 바위 보 아이콘 제작자: iconading - Flaticon" />
           </button>
         </div>
-     
       </div>
-  </>
+    </>
   );
 }
 
